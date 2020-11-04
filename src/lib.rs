@@ -14,6 +14,7 @@ use ruma::{
 mod error;
 pub mod event_auth;
 pub mod room_version;
+pub mod sort_resolved;
 mod state_event;
 mod state_store;
 
