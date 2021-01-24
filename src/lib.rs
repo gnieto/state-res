@@ -16,6 +16,7 @@ pub mod event_auth;
 pub mod room_version;
 mod state_event;
 mod state_store;
+pub mod topo;
 
 pub use error::{Error, Result};
 pub use event_auth::{auth_check, auth_types_for_event};

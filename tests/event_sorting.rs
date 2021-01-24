@@ -35,9 +35,6 @@ fn test_event_sort() {
         .map(|pdu| pdu.event_id().clone())
         .collect::<Vec<_>>();
 
-    // This is a TODO in conduit
-    // TODO these events are not guaranteed to be sorted but they are resolved, do
-    // we need the auth_chain
     let sorted_power_events = state_res::StateResolution::reverse_topological_power_sort(
         &room_id(),
         &power_events,
@@ -45,8 +42,6 @@ fn test_event_sort() {
         &auth_chain,
     );
 
-    // This is a TODO in conduit
-    // TODO we may be able to skip this since they are resolved according to spec
     let resolved_power = state_res::StateResolution::iterative_auth_check(
         &room_id(),
         &RoomVersionId::Version6,
