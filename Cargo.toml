@@ -22,12 +22,11 @@ log = "0.4.11"
 [dependencies.ruma]
 git = "https://github.com/ruma/ruma"
 branch = "main"
-features = ["client-api", "federation-api", "appservice-api"]
+features = ["events", "signatures"]
 
 [features]
-default = ["unstable-pre-spec"]
+default = []
 gen-eventid = []
-unstable-pre-spec = ["ruma/unstable-pre-spec"]
 
 [dev-dependencies]
 criterion = "0.3.3"
