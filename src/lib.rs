@@ -89,7 +89,7 @@ impl StateResolution {
         room_version: &RoomVersionId,
         state_sets: &[StateMap<EventId>],
         auth_events: Vec<Vec<EventId>>,
-        event_map: &mut EventMap<Arc<E>>,
+        event_map: &EventMap<Arc<E>>,
     ) -> Result<StateMap<EventId>> {
         log::info!("State resolution starting");
 
@@ -296,7 +296,7 @@ impl StateResolution {
     pub fn reverse_topological_power_sort<E: Event>(
         room_id: &RoomId,
         events_to_sort: &[EventId],
-        event_map: &mut EventMap<Arc<E>>,
+        event_map: &EventMap<Arc<E>>,
         auth_diff: &[EventId],
     ) -> Vec<EventId> {
         log::debug!("reverse topological sort of power events");
@@ -420,7 +420,7 @@ impl StateResolution {
     fn get_power_level_for_sender<E: Event>(
         room_id: &RoomId,
         event_id: &EventId,
-        event_map: &mut EventMap<Arc<E>>,
+        event_map: &EventMap<Arc<E>>,
     ) -> i64 {
         log::info!("fetch event ({}) senders power level", event_id.to_string());
 
@@ -482,7 +482,7 @@ impl StateResolution {
         room_version: &RoomVersionId,
         events_to_check: &[EventId],
         unconflicted_state: &StateMap<EventId>,
-        event_map: &mut EventMap<Arc<E>>,
+        event_map: &EventMap<Arc<E>>,
     ) -> Result<StateMap<EventId>> {
         log::info!("starting iterative auth check");
 
@@ -579,7 +579,7 @@ impl StateResolution {
         room_id: &RoomId,
         to_sort: &[EventId],
         resolved_power_level: Option<&EventId>,
-        event_map: &mut EventMap<Arc<E>>,
+        event_map: &EventMap<Arc<E>>,
     ) -> Vec<EventId> {
         log::debug!("mainline sort of events");
 
@@ -660,7 +660,7 @@ impl StateResolution {
         room_id: &RoomId,
         mut event: Option<Arc<E>>,
         mainline_map: &EventMap<usize>,
-        event_map: &mut EventMap<Arc<E>>,
+        event_map: &EventMap<Arc<E>>,
     ) -> Result<usize> {
         while let Some(sort_ev) = event {
             log::debug!("mainline event_id {}", sort_ev.event_id().to_string());
@@ -689,7 +689,7 @@ impl StateResolution {
         room_id: &RoomId,
         graph: &mut BTreeMap<EventId, Vec<EventId>>,
         event_id: &EventId,
-        event_map: &mut EventMap<Arc<E>>,
+        event_map: &EventMap<Arc<E>>,
         auth_diff: &[EventId],
     ) {
         let mut state = vec![event_id.clone()];
